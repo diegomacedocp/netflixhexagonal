@@ -1,7 +1,7 @@
 package com.netflix.hexagonal.models;
 
-import com.netflix.hexagonal.dominio.dtos.ConteudoDTO;
-import com.netflix.hexagonal.dominio.models.Conteudo;
+import com.netflix.hexagonal.domain.dtos.ConteudoDTO;
+import com.netflix.hexagonal.domain.models.Conteudo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

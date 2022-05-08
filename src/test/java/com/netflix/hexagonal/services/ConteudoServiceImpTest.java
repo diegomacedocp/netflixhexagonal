@@ -1,9 +1,9 @@
 package com.netflix.hexagonal.services;
 
-import com.netflix.hexagonal.dominio.adaptadores.exception.ValidationException;
-import com.netflix.hexagonal.dominio.dtos.ConteudoDTO;
-import com.netflix.hexagonal.dominio.models.Conteudo;
-import com.netflix.hexagonal.dominio.portas.intefaces.ConteudoServicePort;
+import com.netflix.hexagonal.domain.exception.business.ValidationException;
+import com.netflix.hexagonal.domain.dtos.ConteudoDTO;
+import com.netflix.hexagonal.domain.models.Conteudo;
+import com.netflix.hexagonal.domain.ports.intefaces.ConteudoServicePort;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

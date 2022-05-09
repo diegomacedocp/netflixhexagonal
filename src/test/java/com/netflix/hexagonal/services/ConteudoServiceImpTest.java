@@ -50,7 +50,7 @@ public class ConteudoServiceImpTest {
         Conteudo conteudoSalvar = new Conteudo();
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "O tipo deve ser informado!");
         }
@@ -60,10 +60,10 @@ public class ConteudoServiceImpTest {
     public void testeErroCriarConteudoSemTituloInformado() {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1",null,null,
                 null,null,null,null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "O titulo deve ser informado!");
         }
@@ -73,10 +73,10 @@ public class ConteudoServiceImpTest {
     public void testeErroCriarConteudoSemDiretoresInformado() {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",null,
                 null,null,null,null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "Os Diretores devem ser informado!");
         }
@@ -86,10 +86,10 @@ public class ConteudoServiceImpTest {
     public void testeErroCriarConteudoSemElencoInformado() {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 null,null,null,null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "O Elenco deve ser informado!");
         }
@@ -99,10 +99,10 @@ public class ConteudoServiceImpTest {
     public void testeErroCriarConteudoSemPaisesInformado() {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),null,null,null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "Os paises devem ser informados!");
         }
@@ -112,10 +112,10 @@ public class ConteudoServiceImpTest {
     public void testeErroCriarConteudoSemDataCadstroInformado() {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),null,null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "A data de cadastro deve ser informada!");
         }
@@ -126,10 +126,10 @@ public class ConteudoServiceImpTest {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),
                 "Sun Sep 08 21:00:00 BRT 2001",null,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "O ano de lançamento deve ser informado!");
         }
@@ -140,10 +140,10 @@ public class ConteudoServiceImpTest {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),
                 "Sun Sep 08 21:00:00 BRT 2001",2001,null,null,
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "A duração deve ser informada!");
         }
@@ -154,10 +154,10 @@ public class ConteudoServiceImpTest {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),
                 "Sun Sep 08 21:00:00 BRT 2001",2001,null,"1 min",
-                null,null);
+                null,null,null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
         } catch (ValidationException e) {
             Assertions.assertEquals(e.getMessage(), "A descrição deve ser informada!");
         }
@@ -168,10 +168,10 @@ public class ConteudoServiceImpTest {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1",Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),
                 "Sun Sep 08 21:00:00 BRT 2001",2001,null,"1 min",
-                null,"Descricao 1");
+                null,"Descricao 1",null);
 
         try {
-            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar.toConteudoDTO());
+            Conteudo conteudoRetorno = conteudoServicePort.criarConteudo(conteudoSalvar);
             List<ConteudoDTO> conteudosRetorno = conteudoServicePort.buscarConteudos();
 
             Assertions.assertNotNull(conteudoRetorno);

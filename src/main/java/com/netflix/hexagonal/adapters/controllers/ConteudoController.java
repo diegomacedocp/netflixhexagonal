@@ -22,9 +22,9 @@ public class ConteudoController {
     private ConteudoServicePort conteudoServicePort;
 
     @PostMapping
-    public ResponseEntity<Conteudo> criarConteudo(@Validated @RequestBody ConteudoDTO conteudoDTO) throws ValidationException {
+    public ResponseEntity<Conteudo> criarConteudo(@Validated @RequestBody Conteudo conteudo) throws ValidationException {
         URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/conteudos").toUriString());
-        return ResponseEntity.created(uri).body(conteudoServicePort.criarConteudo(conteudoDTO));
+        return ResponseEntity.created(uri).body(conteudoServicePort.criarConteudo(conteudo));
     }
 
     @GetMapping

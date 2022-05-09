@@ -23,6 +23,7 @@ public class ConteudoDB {
     List<String> countries;
     List<String> directors;
     List<String> listed_in;
+    private String image;
 
     public ConteudoDB() {
     }
@@ -40,6 +41,7 @@ public class ConteudoDB {
         this.duration = conteudo.getDuracao();
         this.listed_in = conteudo.getListadoEm();
         this.description = conteudo.getDescricao();
+        this.image = conteudo.getImage();
     }
 
     public void atualizar(Conteudo conteudo) {
@@ -54,12 +56,13 @@ public class ConteudoDB {
         this.duration = conteudo.getDuracao();
         this.listed_in = conteudo.getListadoEm();
         this.description = conteudo.getDescricao();
+        this.image = conteudo.getImage();
     }
 
 
     public Conteudo toConteudo() {
         return new Conteudo(this._id,this.type,this.title,this.directors,this.cast,this.countries,this.date_added,
-                this.release_year,this.rating,this.duration, this.listed_in,this.description);
+                this.release_year,this.rating,this.duration, this.listed_in,this.description, this.image);
 
     }
 }

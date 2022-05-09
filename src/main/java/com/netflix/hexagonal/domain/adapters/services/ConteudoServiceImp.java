@@ -30,38 +30,37 @@ public class ConteudoServiceImp implements ConteudoServicePort {
     }
 
     @Override
-    public Conteudo criarConteudo(ConteudoDTO conteudoDTO) throws ValidationException {
-        if(Objects.isNull(conteudoDTO))
+    public Conteudo criarConteudo(Conteudo conteudo) throws ValidationException {
+        if(Objects.isNull(conteudo))
             throw new ValidationException("Deve-se passar um conteúdo para salvar!");
 
-        if(Objects.isNull(conteudoDTO.getTipo()) || conteudoDTO.getTipo().isEmpty())
+        if(Objects.isNull(conteudo.getTipo()) || conteudo.getTipo().isEmpty())
             throw new ValidationException("O tipo deve ser informado!");
 
-        if(Objects.isNull(conteudoDTO.getTitulo()) || conteudoDTO.getTitulo().isEmpty())
+        if(Objects.isNull(conteudo.getTitulo()) || conteudo.getTitulo().isEmpty())
             throw new ValidationException("O titulo deve ser informado!");
 
-        if(Objects.isNull(conteudoDTO.getDiretores()) || conteudoDTO.getDiretores().isEmpty())
+        if(Objects.isNull(conteudo.getDiretores()) || conteudo.getDiretores().isEmpty())
             throw new ValidationException("Os Diretores devem ser informado!");
 
-        if(Objects.isNull(conteudoDTO.getElenco()) || conteudoDTO.getElenco().isEmpty())
+        if(Objects.isNull(conteudo.getElenco()) || conteudo.getElenco().isEmpty())
             throw new ValidationException("O Elenco deve ser informado!");
 
-        if(Objects.isNull(conteudoDTO.getPaises()) || conteudoDTO.getPaises().isEmpty())
+        if(Objects.isNull(conteudo.getPaises()) || conteudo.getPaises().isEmpty())
             throw new ValidationException("Os paises devem ser informados!");
 
-        if(Objects.isNull(conteudoDTO.getDataCadastro()) || conteudoDTO.getDataCadastro().isEmpty())
+        if(Objects.isNull(conteudo.getDataCadastro()) || conteudo.getDataCadastro().isEmpty())
             throw new ValidationException("A data de cadastro deve ser informada!");
 
-        if(Objects.isNull(conteudoDTO.getAnoLancamento()) || conteudoDTO.getAnoLancamento() == 0)
+        if(Objects.isNull(conteudo.getAnoLancamento()) || conteudo.getAnoLancamento() == 0)
             throw new ValidationException("O ano de lançamento deve ser informado!");
 
-        if(Objects.isNull(conteudoDTO.getDuracao()) || conteudoDTO.getDuracao().isEmpty())
+        if(Objects.isNull(conteudo.getDuracao()) || conteudo.getDuracao().isEmpty())
             throw new ValidationException("A duração deve ser informada!");
 
-        if(Objects.isNull(conteudoDTO.getDescricao()) || conteudoDTO.getDescricao().isEmpty())
+        if(Objects.isNull(conteudo.getDescricao()) || conteudo.getDescricao().isEmpty())
             throw new ValidationException("A descrição deve ser informada!");
 
-        Conteudo conteudo = new Conteudo(conteudoDTO);
         return this.conteudoRepository.salvar(conteudo);
     }
 

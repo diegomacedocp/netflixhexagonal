@@ -19,7 +19,7 @@ class ContentTest {
                 Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"), Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),
                 Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"), "Sun Sep 08 21:00:00 BRT 2001",
                 2001, "Avaliacao 1", "1 min",
-                Arrays.asList("Listado 1.1", "Listado 1.2", "Listado 1.3"), "Descricao 1");
+                Arrays.asList("Listado 1.1", "Listado 1.2", "Listado 1.3"), "Descricao 1",null);
 
         assertEquals("Tipo1", conteudo.getTipo());
         assertEquals("Titulo1", conteudo.getTitulo());

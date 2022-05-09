@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ConteudoServicePort {
     List<ConteudoDTO> buscarConteudos();
-    Conteudo criarConteudo(ConteudoDTO conteudoDTO) throws ValidationException;
+    Conteudo criarConteudo(Conteudo conteudo) throws ValidationException;
     List<ConteudoDTO> obterConteudoPorRangeDeReleaseYear(Integer de, Integer ate) throws ValidationException;
     List<ConteudoDTO> buscarPorTipo(String tipo) throws ValidationException;
     ConteudoDTO buscarId(Long id) throws ValidationException;

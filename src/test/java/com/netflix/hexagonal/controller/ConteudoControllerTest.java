@@ -72,7 +72,7 @@ public class ConteudoControllerTest {
         Conteudo conteudoSalvar = new Conteudo(null,"Tipo1","Titulo1", Arrays.asList("Diretor 1.1", "Diretor 1.2", "Diretor 1.3"),
                 Arrays.asList("Elenco 1.1", "Elenco 1.2", "Elenco 1.3"),Arrays.asList("Paises 1.1", "Paises 1.2", "Paises 1.3"),
                 "Sun Sep 08 21:00:00 BRT 2001",2001,null,"1 min",
-                null,"Descricao 1");
+                null,"Descricao 1",null);
 
         mockMvc.perform(post("/conteudos")
                         .content(asJsonString(conteudoSalvar))
@@ -89,7 +89,7 @@ public class ConteudoControllerTest {
 
         Conteudo conteudoSalvar = new Conteudo(null,null,null,null,
                 null,null,null,null,null,null,
-                null,null);
+                null,null,null);
 
         mockMvc.perform(post("/conteudos")
                         .content(asJsonString(conteudoSalvar))
@@ -97,15 +97,15 @@ public class ConteudoControllerTest {
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.errors").exists())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[1].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[2].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[3].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[4].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[5].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[6].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[7].message").value("é obrigatório seu preenchimento"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[8].message").value("é obrigatório seu preenchimento"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[0].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[1].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[2].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[3].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[4].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[5].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[6].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[7].message").value("O campo é obrigatório o preenchimento"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.errors[8].message").value("O campo é obrigatório o preenchimento"));
     }
 
     public static String asJsonString(final Object obj) {

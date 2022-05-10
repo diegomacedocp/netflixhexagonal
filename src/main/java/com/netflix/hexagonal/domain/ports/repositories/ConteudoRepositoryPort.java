@@ -11,7 +11,7 @@ public interface ConteudoRepositoryPort {
     List<Conteudo> buscarTodos();
     Conteudo buscarId(Long id);
     Conteudo salvar(Conteudo conteudo);
-    public List<Conteudo> obterConteudoPorRangeDeReleaseYear(Integer de, Integer ate);
-    public List<Conteudo> buscarPorTipo(String tipo);
+    List<Conteudo> obterConteudoPorRangeDeReleaseYear(Integer de, Integer ate);
+    List<Conteudo> buscarPorTipo(String tipo);
 
 }

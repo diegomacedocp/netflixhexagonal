@@ -5,6 +5,7 @@ import com.netflix.hexagonal.domain.ports.repositories.ConteudoRepositoryPort;
 import com.netflix.hexagonal.infraestrutura.adapters.modelsDB.ConteudoDB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -38,9 +39,12 @@ public class ConteudoRepository implements ConteudoRepositoryPort {
     @Override
     public Conteudo salvar(Conteudo conteudo) {
         ConteudoDB conteudoDB;
-        if (Objects.isNull(conteudo.getId()))
+        if (Objects.isNull(conteudo.getId())) {
             conteudoDB = new ConteudoDB(conteudo);
-        else {
+
+            long unixTime = System.currentTimeMillis() / 1000L;
+            conteudoDB.set_id(unixTime);
+        } else {
             conteudoDB = this.springConteudoRepository.findById(conteudo.getId()).get();
             conteudoDB.atualizar(conteudo);
         }
@@ -56,7 +60,17 @@ public class ConteudoRepository implements ConteudoRepositoryPort {
 
     @Override
     public List<Conteudo> buscarPorTipo(String tipo) {
-        List<ConteudoDB> conteudoEntities = this.springConteudoRepository.buscarPorTipo(tipo);
+        List<ConteudoDB> conteudoEntities = this.springConteudoRepository.findByType(tipo);
         return conteudoEntities.stream().map(ConteudoDB::toConteudo).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<Conteudo> buscarPorTituloPaginado(String title, int page, int size) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by("title").ascending());
+        List<Conteudo> allConteudos = this.springConteudoRepository.findByTitlePage(title,pageable)
+                .stream().map(ConteudoDB::toConteudo).collect(Collectors.toList());
+
+        return new PageImpl<Conteudo>(allConteudos);
     }
 }

@@ -4,7 +4,9 @@ import com.netflix.hexagonal.domain.exception.business.ValidationException;
 import com.netflix.hexagonal.domain.dtos.ConteudoDTO;
 import com.netflix.hexagonal.domain.models.Conteudo;
 import com.netflix.hexagonal.domain.ports.intefaces.ConteudoServicePort;
+import com.netflix.hexagonal.infraestrutura.adapters.modelsDB.ConteudoDB;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/conteudos")
@@ -45,6 +46,10 @@ public class ConteudoController {
     @GetMapping("/tipo")
     public ResponseEntity<List<ConteudoDTO>> buscarPorTipo(@RequestParam("tipo") String tipo) throws ValidationException {
         return ResponseEntity.ok().body(this.conteudoServicePort.buscarPorTipo(tipo));
+    }
+    @GetMapping("/titulo")
+    public ResponseEntity<Page<ConteudoDTO>> buscarPorTituloPaginado(@RequestParam(value="titulo", defaultValue = "", required = false) String titulo, @RequestParam(value = "page", defaultValue = "0", required = false) int page, @RequestParam(value = "size", defaultValue = "1000", required = false) int size){
+        return ResponseEntity.ok().body(this.conteudoServicePort.buscarPorTituloPaginado(titulo, page,size));
     }
 
 }

@@ -2,7 +2,9 @@ package com.netflix.hexagonal.infraestrutura.adapters.repositories;
 
 import com.netflix.hexagonal.domain.models.Conteudo;
 import com.netflix.hexagonal.domain.ports.repositories.ConteudoRepositoryPort;
+import com.netflix.hexagonal.infraestrutura.adapters.modelsDB.ConteudoDB;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -72,5 +74,10 @@ public class ConteudoRepositoryFakeDb implements ConteudoRepositoryPort {
         System.out.println("Fake banco de dados -> Conteudo buscarPorTipo(tipo)");
         List<Conteudo> lista = new ArrayList<Conteudo>(banco.values());
         return lista.stream().filter( l -> l.getTipo().equals(tipo) ).collect(Collectors.toList());
+    }
+
+    @Override
+    public Page<Conteudo> buscarPorTituloPaginado(String tipo, int page, int size) {
+        return null;
     }
 }

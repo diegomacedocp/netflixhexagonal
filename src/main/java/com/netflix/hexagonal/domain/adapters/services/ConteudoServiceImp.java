@@ -5,7 +5,10 @@ import com.netflix.hexagonal.domain.dtos.ConteudoDTO;
 import com.netflix.hexagonal.domain.models.Conteudo;
 import com.netflix.hexagonal.domain.ports.intefaces.ConteudoServicePort;
 import com.netflix.hexagonal.domain.ports.repositories.ConteudoRepositoryPort;
+import com.netflix.hexagonal.infraestrutura.adapters.modelsDB.ConteudoDB;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -92,5 +95,13 @@ public class ConteudoServiceImp implements ConteudoServicePort {
             throw new  ValidationException("Nenhum conteúdo encontrado!");
 
         return conteudo.toConteudoDTO();
+    }
+
+    @Override
+    public Page<ConteudoDTO> buscarPorTituloPaginado(String titulo, int page, int size) {
+        List<ConteudoDTO> allCollect = this.conteudoRepository.buscarPorTituloPaginado(titulo, page, size)
+                .stream().map(Conteudo::toConteudoDTO).collect(Collectors.toList());
+
+        return new PageImpl<ConteudoDTO>(allCollect);
     }
 }

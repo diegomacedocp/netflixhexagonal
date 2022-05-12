@@ -5,12 +5,16 @@ import com.netflix.hexagonal.domain.dtos.ConteudoDTO;
 import com.netflix.hexagonal.domain.models.Conteudo;
 import com.netflix.hexagonal.domain.ports.intefaces.ConteudoServicePort;
 import com.netflix.hexagonal.domain.ports.repositories.ConteudoRepositoryPort;
-import com.netflix.hexagonal.infraestrutura.adapters.modelsDB.ConteudoDB;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -103,5 +107,49 @@ public class ConteudoServiceImp implements ConteudoServicePort {
                 .stream().map(Conteudo::toConteudoDTO).collect(Collectors.toList());
 
         return new PageImpl<ConteudoDTO>(allCollect);
+    }
+
+    @Override
+    public void removerConteudoPorId(Long id) throws ValidationException {
+
+        Conteudo conteudo = this.conteudoRepository.buscarId(id);
+
+        if(Objects.isNull(conteudo))
+            throw new  ValidationException("O conteúdo não foi encontrado para remover!");
+
+        this.conteudoRepository.removerConteudoPorId(id);
+    }
+
+    @Override
+    public ConteudoDTO atualizarImagem(Long id, MultipartFile file) throws ValidationException {
+        Conteudo conteudo = this.conteudoRepository.buscarId(id);
+
+        if(Objects.isNull(conteudo))
+            throw new  ValidationException("Nenhum conteúdo encontrado!");
+
+        if(Objects.isNull(file.getContentType()) || !file.getContentType().equals("image/jpeg"))
+            throw new  ValidationException("Arquivo inválido. Aceita somente .jpg");
+
+        BASE64Encoder encoder = new BASE64Encoder();
+
+        try {
+            String imageBase64 = new String(encoder.encode(file.getBytes()));
+            conteudo.setImage(imageBase64);
+        } catch (IOException e) {
+            throw new  ValidationException("Erro ao converter imagem em Base64.");
+        }
+
+        return this.conteudoRepository.salvar(conteudo).toConteudoDTO();
+    }
+
+    @Override
+    public void removerImagem(Long id) throws ValidationException {
+        Conteudo conteudo = this.conteudoRepository.buscarId(id);
+
+        if(Objects.isNull(conteudo))
+            throw new  ValidationException("Nenhum conteúdo encontrado!");
+
+        conteudo.setImage(null);
+        this.conteudoRepository.salvar(conteudo).toConteudoDTO();
     }
 }

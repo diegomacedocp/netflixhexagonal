@@ -73,4 +73,10 @@ public class ConteudoRepository implements ConteudoRepositoryPort {
 
         return new PageImpl<Conteudo>(allConteudos);
     }
+
+    @Override
+    public void removerConteudoPorId(Long id){
+        this.springConteudoRepository.deleteById(id);
+    }
+
 }

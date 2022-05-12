@@ -17,5 +17,6 @@ public interface ConteudoRepositoryPort {
     List<Conteudo> obterConteudoPorRangeDeReleaseYear(Integer de, Integer ate);
     List<Conteudo> buscarPorTipo(String tipo);
     Page<Conteudo> buscarPorTituloPaginado(String titulo, int page, int size);
+    void removerConteudoPorId(Long id);
 
 }

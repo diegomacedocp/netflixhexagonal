@@ -13,13 +13,10 @@ import java.util.List;
 
 @Repository
 public interface SpringConteudoRepository extends MongoRepository<ConteudoDB, Long> {
-
     @Query("{ $and: [ { 'release_year': { $gt: ?0 } }, { 'release_year': { $lt: ?1 } } ] }")
     List<ConteudoDB> obterConteudoPorRangeDeReleaseYear(Integer de, Integer ate);
-
     @Query("{ title: /^?0/i  }")
     Page<ConteudoDB> findByTitlePage(@Param("title") String title, Pageable pageable);
-
     List<ConteudoDB> findByType(String tipo);
 
 }

@@ -7,15 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.io.FileInputStream;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -158,6 +162,18 @@ public class ConteudoControllerProdTest {
                 .andExpect(jsonPath("$.totalPages", is(1)))
                 .andExpect(jsonPath("$.totalElements", is(2)));
 
+    }
+
+    @Test
+    public void testeAtualizarImagem() throws Exception {
+
+        FileInputStream fis = new FileInputStream("C:\\image.jpg");
+        MockMultipartFile image = new MockMultipartFile("image", "", "image/jpeg", fis);
+
+        mockMvc.perform(MockMvcRequestBuilders.multipart("/conteudos/image/atualizar/80117401")
+                        .file(image))
+                .andDo(print())
+                .andExpect(status().isOk());
     }
 
     public static String asJsonString(final Object obj) {

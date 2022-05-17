@@ -17,8 +17,7 @@ import java.io.FileInputStream;
 import java.util.Arrays;
 
 import static org.hamcrest.Matchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -175,6 +174,13 @@ public class ConteudoControllerProdTest {
                 .andDo(print())
                 .andExpect(status().isOk());
     }
+
+    /*@Test
+    public void testeRemoverConteudoPorId() throws Exception {
+        mockMvc.perform(delete("/conteudos/remover/1652826854"))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }*/
 
     public static String asJsonString(final Object obj) {
         try {

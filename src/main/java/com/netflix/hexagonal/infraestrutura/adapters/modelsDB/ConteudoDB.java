@@ -2,9 +2,8 @@ package com.netflix.hexagonal.infraestrutura.adapters.modelsDB;
 
 import com.netflix.hexagonal.domain.models.Conteudo;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.*;
 import java.util.List;
 
 @Data
